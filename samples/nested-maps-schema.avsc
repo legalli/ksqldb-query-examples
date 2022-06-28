@@ -1,0 +1,43 @@
+{
+    "type": "record",
+    "name": "datacenter",
+    "namespace": "type",
+    "fields":[
+        {"name":"datacenter_id", "type": "string"},
+        {
+            "name": "rooms",
+            "type": {
+                "type": "map",
+                "namespace": "type.datacenter",
+                "name": "rooms",
+                "values": {
+                    "type": "record",
+                    "namespace": "type.datacenter.room",
+                    "name": "rack",
+                    "fields": [
+                        {"name": "warning", "type":"int"},
+                        {"name": "temperature", "type":"float"},
+                        {
+                            "name": "modules",
+                            "type":{
+                                "type": "map",
+                                "namespace": "type.datacenter.room.rack",
+                                "name": "modules",
+                                "values":{
+                                    "type": "record",
+                                    "namespace": "type.datacenter.room.rack.modules",
+                                    "name": "module",
+                                    "fields":[
+                                        {"name":"voltage", "type": "float"},
+                                        {"name":"current", "type": "float"}
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                },
+                "default": {}
+            }
+        }
+    ]
+}
